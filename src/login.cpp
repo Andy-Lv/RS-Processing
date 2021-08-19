@@ -15,11 +15,18 @@ login::login(QWidget *parent)
     ui_login->lineEdit_Pwd->setValidator(pRevalidotor);
 
 
+    //点击登陆,进入主页面
+    connect(ui_login->pushButton_login, &QPushButton::released, this, [=]()
+    {
+        m_window.show();
+        this->close();
+    });
 
-//    connect(ui_login->pushButton_login, &QPushButton::released, this, [=]()
-//    {
-//        b.show();
-//    });
+    //点击取消,退出页面
+    connect(ui_login->pushButton_cancel, &QPushButton::released, this, [=]()
+    {
+        this->close();
+    });
 
 //    //处理子窗口的信号
 //    connect(&b, &back::Mysignal, this, [=]()

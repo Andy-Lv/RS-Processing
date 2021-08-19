@@ -5,10 +5,10 @@
 #ifndef RS_PROCESSING_LOGIN_H
 #define RS_PROCESSING_LOGIN_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QRegExpValidator>
 #include "ui/ui_login.h"
-
+#include "include/mainwindow.h"
 class login : public QDialog
 {
 Q_OBJECT
@@ -23,7 +23,7 @@ private:
     Ui::Dialog_login *ui_login;
 
     //声明一个新窗口
-//            back b;
+    mainwindow m_window;
 
 };
 
