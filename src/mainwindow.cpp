@@ -9,13 +9,6 @@ mainwindow::mainwindow(QWidget *parent)
 {
     ui_mainwindow->setupUi(this);
 
-//    connect(ui_mainwindow->pushButton_back, &QPushButton::released, this,
-//            [=]()
-//            {
-//                emit Mysignal();
-//            }
-//    );
-
 }
 
 
