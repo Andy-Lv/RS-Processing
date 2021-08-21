@@ -23,6 +23,7 @@
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "include/treemenu.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -244,6 +245,7 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         treeWidget = new QTreeWidget(centralwidget);
+        //treeWidget=new TreeMenu();
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);

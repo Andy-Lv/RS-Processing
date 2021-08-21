@@ -9,21 +9,21 @@
 #include <QRegExpValidator>
 #include "ui/ui_login.h"
 #include "include/mainwindow.h"
-class login : public QDialog
+class Login : public QDialog
 {
 Q_OBJECT
 
 public:
-    login(QWidget *parent = Q_NULLPTR);
+    Login(QWidget *parent = Q_NULLPTR);
 
-    ~login();
+    ~Login();
 
 
 private:
     Ui::Dialog_login *ui_login;
 
     //声明一个新窗口
-    mainwindow m_window;
+    MainWindow m_window;
 
 };
 

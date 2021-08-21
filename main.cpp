@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     //窗口对象
-    login w;
+    Login w;
 
     //窗口对象不会默认显示，必须调用show方法
     w.show();

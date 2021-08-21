@@ -6,18 +6,22 @@
 #define RS_PROCESSING_MAINWINDOW_H
 
 #include "ui/ui_mainwindow.h"
+#include "include/treemenu.h"
 
-class mainwindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
 Q_OBJECT
 
 public:
-    mainwindow(QWidget *parent = Q_NULLPTR);
+    MainWindow(QWidget *parent = Q_NULLPTR);
 
-    ~mainwindow();
+    ~MainWindow();
 
 private:
     Ui::MainWindow *ui_mainwindow;
+    QTreeWidget *treemenu=new TreeMenu();
+
+
 };
 
 #endif //RS_PROCESSING_MAINWINDOW_H

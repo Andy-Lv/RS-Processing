@@ -4,7 +4,7 @@
 
 #include "include/login.h"
 
-login::login(QWidget *parent)
+Login::Login(QWidget *parent)
         : QDialog(parent), ui_login(new Ui::Dialog_login)
 {
     ui_login->setupUi(this);
@@ -36,7 +36,7 @@ login::login(QWidget *parent)
 //    });
 }
 
-login::~login()
+Login::~Login()
 {
 
 }

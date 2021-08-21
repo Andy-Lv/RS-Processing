@@ -4,15 +4,20 @@
 
 #include "include/mainwindow.h"
 
-mainwindow::mainwindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui_mainwindow(new Ui::MainWindow)
 {
+    //ui_mainwindow->treeWidget=new TreeMenu;
     ui_mainwindow->setupUi(this);
+    treemenu->show();
+
+
+//    ui_mainwindow->treeWidget->show();
 
 }
 
 
-mainwindow::~mainwindow()
+MainWindow::~MainWindow()
 {
 
 }

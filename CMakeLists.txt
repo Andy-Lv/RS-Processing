@@ -24,15 +24,25 @@ set(CMAKE_AUTORCC ON)
 
 qt5_wrap_cpp(MOC_SRCS
         include/login.h
-        include/mainwindow.h)
+        include/mainwindow.h
+        )
 
 qt5_wrap_ui(UI_HEADERS
         ui/login.ui
         ui/mainwindow.ui)
 
+set(HEAD_FILES
+        include/treemenu.h
+        include/information.h
+        )
+
 set(SRC_FILES
         src/login.cpp
-        src/mainwindow.cpp)
+        src/mainwindow.cpp
+        src/treemenu.cpp
+        src/information.cpp)
+
+
 
 #设置工程包含当前目录，非必须
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -46,6 +56,10 @@ add_executable(${PROJECT_NAME}
         ${WRAP_FILES}
         ${MOC_SRCS}
         main.cpp)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+        {CMAKE_SOURCE_DIR}/src
+        {CMAKE_SOURCE_DIR}/include)
 
 #添加Qt5依赖项
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
