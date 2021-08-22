@@ -3,6 +3,7 @@
 //
 
 #include "include/login.h"
+#include "ui_login.h"
 
 Login::Login(QWidget *parent)
         : QDialog(parent), ui_login(new Ui::Dialog_login)

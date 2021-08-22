@@ -7,8 +7,12 @@
 
 #include <QDialog>
 #include <QRegExpValidator>
-#include "ui/ui_login.h"
 #include "include/mainwindow.h"
+
+namespace Ui
+{
+    class Dialog_login;
+}
 class Login : public QDialog
 {
 Q_OBJECT
