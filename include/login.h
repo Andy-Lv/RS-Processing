@@ -24,6 +24,7 @@ private:
 
     //声明一个新窗口
     MainWindow m_window;
+    //TreeWidget treemenu;
 
 };
 

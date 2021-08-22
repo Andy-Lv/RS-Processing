@@ -5,8 +5,16 @@
 #ifndef RS_PROCESSING_MAINWINDOW_H
 #define RS_PROCESSING_MAINWINDOW_H
 
-#include "ui/ui_mainwindow.h"
+#pragma once
+
+#include <QMainWindow>
 #include "include/treemenu.h"
+
+QT_BEGIN_NAMESPACE
+namespace Ui {
+    class MainWindow;
+}
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -19,9 +27,6 @@ public:
 
 private:
     Ui::MainWindow *ui_mainwindow;
-    QTreeWidget *treemenu=new TreeMenu();
-
-
 };
 
 #endif //RS_PROCESSING_MAINWINDOW_H

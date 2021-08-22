@@ -20,7 +20,6 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "include/treemenu.h"
@@ -37,11 +36,11 @@ public:
     QGridLayout *gridLayout;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton;
+    QPushButton *pushButton_save;
+    QPushButton *pushButton_new;
     QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton_2;
+    QPushButton *pushButton_close;
+    QPushButton *pushButton_open;
     QSpacerItem *horizontalSpacer_3;
     QWidget *tab_edit;
     QHBoxLayout *horizontalLayout_2;
@@ -65,7 +64,7 @@ public:
     QSpacerItem *horizontalSpacer_30;
     QWidget *tab_2;
     QHBoxLayout *horizontalLayout;
-    QTreeWidget *treeWidget;
+    TreeMenu *treeWidget;
     QWidget *widget;
     QTableView *tableView;
     QStatusBar *statusbar;
@@ -101,37 +100,37 @@ public:
 
         gridLayout->addItem(horizontalSpacer, 0, 1, 1, 1);
 
-        pushButton_3 = new QPushButton(tab_file);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setMinimumSize(QSize(35, 35));
-        pushButton_3->setMaximumSize(QSize(35, 35));
+        pushButton_save = new QPushButton(tab_file);
+        pushButton_save->setObjectName(QString::fromUtf8("pushButton_save"));
+        pushButton_save->setMinimumSize(QSize(35, 35));
+        pushButton_save->setMaximumSize(QSize(35, 35));
 
-        gridLayout->addWidget(pushButton_3, 0, 5, 1, 1);
+        gridLayout->addWidget(pushButton_save, 0, 5, 1, 1);
 
-        pushButton = new QPushButton(tab_file);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setMinimumSize(QSize(35, 35));
-        pushButton->setMaximumSize(QSize(35, 35));
+        pushButton_new = new QPushButton(tab_file);
+        pushButton_new->setObjectName(QString::fromUtf8("pushButton_new"));
+        pushButton_new->setMinimumSize(QSize(35, 35));
+        pushButton_new->setMaximumSize(QSize(35, 35));
 
-        gridLayout->addWidget(pushButton, 0, 0, 1, 1);
+        gridLayout->addWidget(pushButton_new, 0, 0, 1, 1);
 
         horizontalSpacer_4 = new QSpacerItem(10, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_4, 0, 4, 1, 1);
 
-        pushButton_4 = new QPushButton(tab_file);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setMinimumSize(QSize(35, 35));
-        pushButton_4->setMaximumSize(QSize(35, 35));
+        pushButton_close = new QPushButton(tab_file);
+        pushButton_close->setObjectName(QString::fromUtf8("pushButton_close"));
+        pushButton_close->setMinimumSize(QSize(35, 35));
+        pushButton_close->setMaximumSize(QSize(35, 35));
 
-        gridLayout->addWidget(pushButton_4, 0, 7, 1, 1);
+        gridLayout->addWidget(pushButton_close, 0, 7, 1, 1);
 
-        pushButton_2 = new QPushButton(tab_file);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setMinimumSize(QSize(35, 35));
-        pushButton_2->setMaximumSize(QSize(35, 35));
+        pushButton_open = new QPushButton(tab_file);
+        pushButton_open->setObjectName(QString::fromUtf8("pushButton_open"));
+        pushButton_open->setMinimumSize(QSize(35, 35));
+        pushButton_open->setMaximumSize(QSize(35, 35));
 
-        gridLayout->addWidget(pushButton_2, 0, 3, 1, 1);
+        gridLayout->addWidget(pushButton_open, 0, 3, 1, 1);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -244,8 +243,7 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        treeWidget = new QTreeWidget(centralwidget);
-        //treeWidget=new TreeMenu();
+        treeWidget = new TreeMenu(centralwidget);
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
@@ -288,10 +286,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "\346\226\260\345\273\272", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        pushButton_save->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230", nullptr));
+        pushButton_new->setText(QCoreApplication::translate("MainWindow", "\346\226\260\345\273\272", nullptr));
+        pushButton_close->setText(QCoreApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
+        pushButton_open->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_file), QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         pushButton_9->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         pushButton_10->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
@@ -304,6 +302,8 @@ public:
         pushButton_34->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\345\212\237\350\203\275", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
+        ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256", nullptr));
     } // retranslateUi
 
 };

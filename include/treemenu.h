@@ -5,6 +5,7 @@
 #ifndef RS_PROCESSING_TREEMENU_H
 #define RS_PROCESSING_TREEMENU_H
 
+#pragma once
 #include <QDialog>
 #include <QTreeWidget>
 #include <QComboBox>
@@ -15,6 +16,9 @@
 #include <QMenu>
 #include <QProcess>
 #include <QMessageBox>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QApplication>
 #include "include/mainwindow.h"
 
 // 创建文件时 弹出的窗体

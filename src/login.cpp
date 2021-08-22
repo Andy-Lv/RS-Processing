@@ -19,6 +19,8 @@ Login::Login(QWidget *parent)
     connect(ui_login->pushButton_login, &QPushButton::released, this, [=]()
     {
         m_window.show();
+//        treemenu.show();
+//        treemenu.CreateTopItem("./");
         this->close();
     });
 

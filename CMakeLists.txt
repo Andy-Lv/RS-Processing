@@ -25,16 +25,19 @@ set(CMAKE_AUTORCC ON)
 qt5_wrap_cpp(MOC_SRCS
         include/login.h
         include/mainwindow.h
+        include/treemenu.h
+        include/information.h
         )
 
 qt5_wrap_ui(UI_HEADERS
         ui/login.ui
         ui/mainwindow.ui)
+add_custom_target(ui ALL DEPENDS ${UI_HEADERS})
 
-set(HEAD_FILES
-        include/treemenu.h
-        include/information.h
-        )
+#set(HEAD_FILES
+#        include/treemenu.h
+#        include/information.h
+#        )
 
 set(SRC_FILES
         src/login.cpp
@@ -42,7 +45,8 @@ set(SRC_FILES
         src/treemenu.cpp
         src/information.cpp)
 
-
+# ui
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
 
 #设置工程包含当前目录，非必须
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

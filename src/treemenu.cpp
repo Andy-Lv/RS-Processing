@@ -74,7 +74,7 @@ TreeMenu::TreeMenu(QWidget *parent)
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     this->setAutoScroll(true);
-    this->header()->setVisible(false);   //隐藏横向表头
+    //this->header()->setVisible(false);   //隐藏横向表头
 
     this->setFrameStyle(QFrame::Sunken);
     this->setAnimated(true); //展开折叠动画
@@ -103,13 +103,20 @@ TreeMenu::TreeMenu(QWidget *parent)
     fileMenu->addAction("删除文件");
     fileMenu->addAction("打开所在文件夹");
 
-    connect(dirMenu, SIGNAL(triggered(QAction * )), this, SLOT(tempActionInformation(QAction * )));
-    connect(fileMenu, SIGNAL(triggered(QAction * )), this, SLOT(tempActionInformation(QAction * )));
+    connect(dirMenu, SIGNAL(triggered(QAction * )), this,
+            SLOT(tempActionInformation(QAction * )));
 
-    connect(this, SIGNAL(itemPressed(QTreeWidgetItem * , int)), this, SLOT(itemPressedSlot(QTreeWidgetItem * , int)));
+    connect(fileMenu, SIGNAL(triggered(QAction * )), this,
+            SLOT(tempActionInformation(QAction * )));
+
+    connect(this, SIGNAL(itemPressed(QTreeWidgetItem * , int)), this,
+            SLOT(itemPressedSlot(QTreeWidgetItem * , int)));
+
     connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem * , int)), this,
             SLOT(DoubleClickpath(QTreeWidgetItem * , int)));
-    connect(this, SIGNAL(collapseItemSignal(const QTreeWidgetItem*)), this, SLOT(collapseItem(const QTreeWidgetItem*)));
+
+    connect(this, SIGNAL(collapseItemSignal(const QTreeWidgetItem*)), this,
+            SLOT(collapseItem(const QTreeWidgetItem*)));
 
 }
 
