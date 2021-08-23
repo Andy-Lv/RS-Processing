@@ -20,8 +20,6 @@ Login::Login(QWidget *parent)
     connect(ui_login->pushButton_login, &QPushButton::released, this, [=]()
     {
         m_window.show();
-//        treemenu.show();
-//        treemenu.CreateTopItem("./");
         this->close();
     });
 
@@ -30,13 +28,6 @@ Login::Login(QWidget *parent)
     {
         this->close();
     });
-
-//    //处理子窗口的信号
-//    connect(&b, &back::Mysignal, this, [=]()
-//    {
-//        b.close();
-//        this->show();
-//    });
 }
 
 Login::~Login()
