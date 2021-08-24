@@ -2,34 +2,22 @@
 // Created by andy on 2021/8/23.
 //
 
-#ifndef RS_PROCESSING_BANDCOMBINATION_H
-#define RS_PROCESSING_BANDCOMBINATION_H
+#ifndef RS_PROCESSING_IMAGE_H
+#define RS_PROCESSING_IMAGE_H
 
 #pragma once
 #include <iostream>
-#include <qimage.h>
 #include <map>
 #include "gdal_priv.h"
 #include "gdal.h"
-#include "Eigen/Eigen"
 
-using namespace Eigen;
 using namespace std;
 
-class The_Image
+class Image
 {
 public:
     //提取图像各波段像素矩阵
     void ReadImage(const char *InputImagePath);
-
-    //波段组合
-    void BandCombination(const char *InputImagePath, BandData imagename, const QString outputimage);
-
-    //输出图像波段像素信息
-    double **GetImageData();
-
-    //图像拉伸
-    void ImageStretching(const char *InputImagePath, const char *outputimage);
 
     //输出图像信息
     int GetBandNum();
@@ -39,6 +27,9 @@ public:
     int GetImgHeight();
 
     int GetDepth();
+
+    //输出图像波段像素信息
+    map<int,double **> GetImageData();
 
 
 protected:
@@ -60,4 +51,4 @@ protected:
 
 };
 
-#endif //RS_PROCESSING_BANDCOMBINATION_H
+#endif //RS_PROCESSING_IMAGE_H

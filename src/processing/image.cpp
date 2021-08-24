@@ -2,9 +2,9 @@
 // Created by andy on 2021/8/23.
 //
 
-#include "include/processing/bandCombination.h"
+#include "include/processing/image.h"
 
-void The_Image::ReadImage(const char *InputImagePath)
+void Image::ReadImage(const char *InputImagePath)
 {
     //GDAL所有操作都需要先注册
     GDALAllRegister();
@@ -57,15 +57,42 @@ void The_Image::ReadImage(const char *InputImagePath)
             }
         }
 
-        //将每个波段像素插入到map中,从0开始
-        this->banddata.insert(pair<int, double **>(nband - 1, imagedata));
+        //将每个波段像素插入到map中,从1开始
+        this->banddata.insert(pair<int, double **>(nband, imagedata));
 
         //释放缓冲区
         CPLFree(pafScanline);
+        delete(poBand);
+
     }
 
     //关闭图像
     GDALClose(ImageData);
 
     cout << "成功读取图片" << bandNum << "个波段" << endl;
+}
+
+int Image::GetBandNum()
+{
+    return this->bandNum;
+}
+
+int Image::GetImgWidth()
+{
+    return this->imgWidth;
+}
+
+int Image::GetImgHeight()
+{
+    return this->imgHeight;
+}
+
+int Image::GetDepth()
+{
+    return this->depth;
+}
+
+map<int,double **> Image::GetImageData()
+{
+    return this->banddata;
 }

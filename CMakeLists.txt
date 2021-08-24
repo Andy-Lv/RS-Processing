@@ -59,15 +59,16 @@ add_custom_target(ui ALL DEPENDS ${UI_HEADERS})
 add_custom_target(h ALL DEPENDS ${MOC_SRCS})
 
 set(HEAD_FILES
-        include/processing/bandCombination.h
-        )
+        include/processing/image.h
+        include/processing/process.h)
 
 set(SRC_FILES
         src/login.cpp
         src/mainwindow.cpp
         src/treemenu.cpp
         src/information.cpp
-        src/processing/bandCombination.cpp)
+        src/processing/image.cpp
+        src/processing/process.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
