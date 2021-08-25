@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string>
+#include <QDebug>
 #include "include/mainwindow.h"
 
 using namespace std;
@@ -75,6 +76,7 @@ private:
     int nowCol; //当前所在列
     NewBulidFile *newFileWidget;
     NewBuildfolder *newDirWidget;
+    QString FilePath;
 
 signals:
 

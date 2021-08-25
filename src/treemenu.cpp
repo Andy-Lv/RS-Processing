@@ -124,6 +124,8 @@ TreeMenu::TreeMenu(QWidget *parent)
 // 创建文件树的根
 void TreeMenu::CreateTopItem(QString path)
 {
+    this->FilePath=path;//将打开项目的路径赋值到类的私有属性中
+
     QDir *rootdir = new QDir(path);
     root = new QTreeWidgetItem();
     this->addTopLevelItem(root);
@@ -277,6 +279,8 @@ void TreeMenu::buttonCollapseItem()
 // 创建文件的具体实现
 void TreeMenu::bulidNewFileSlot(bool /*flag*/)
 {
+    QString path;
+
     QString fileName = newFileWidget->fileNameEdit->text();
     QString filetype = newFileWidget->fileNameTypeBox->currentText();
     if (fileName == "")
@@ -286,7 +290,15 @@ void TreeMenu::bulidNewFileSlot(bool /*flag*/)
         return;
     }
     QString tempName = fileName + filetype;
-    QString path = nowItem->toolTip(0) + "/" + tempName;
+
+    if (nowItem->toolTip(0) == "")
+    {
+        path = FilePath + "/" + tempName;
+    } else
+    {
+        path = nowItem->toolTip(0) + "/" + tempName;
+    }
+
     if (access(path.toStdString().c_str(), F_OK) != -1)
     {
         QMessageBox::warning(this, tr("警告"), tr("文件已存在"));
@@ -311,6 +323,8 @@ void TreeMenu::closeBuildFileSlot(bool /*flag*/)
 // 创建文件夹的具体实现
 void TreeMenu::buildNewDirSlot(bool /*flag*/)
 {
+    QString path;
+
     QString dirName = newDirWidget->fileNameEdit->text();
     if (dirName == "")
     {
@@ -318,9 +332,14 @@ void TreeMenu::buildNewDirSlot(bool /*flag*/)
                              tr("文件名不能为空"));
         return;
     }
-    QString path = nowItem->toolTip(0) + "/" + dirName;
 
-    cout<<nowItem->toolTip(0);
+    if (nowItem->toolTip(0) == "")
+    {
+        path = FilePath + "/" + dirName;
+    } else
+    {
+        path = nowItem->toolTip(0) + "/" + dirName;
+    }
 
     if (access(path.toStdString().c_str(), F_OK) != -1)
     {
