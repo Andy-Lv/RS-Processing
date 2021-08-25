@@ -2,6 +2,7 @@
 // Created by andy on 2021/8/21.
 //
 
+
 #include "include/treemenu.h"
 
 NewBulidFile::NewBulidFile(QWidget *parent) : QDialog(parent)
@@ -286,14 +287,13 @@ void TreeMenu::bulidNewFileSlot(bool /*flag*/)
     }
     QString tempName = fileName + filetype;
     QString path = nowItem->toolTip(0) + "/" + tempName;
-    QFile file(path);
-    if (file.exists())
+    if (access(path.toStdString().c_str(), F_OK) != -1)
     {
-        QMessageBox::warning(this, tr("警告"),
-                             tr("文件已存在"));
+        QMessageBox::warning(this, tr("警告"), tr("文件已存在"));
         return;
     }
-    file.open(QIODevice::ReadWrite | QIODevice::Text);
+    ofstream file;
+    file.open(path.toStdString());
     file.close();
     QTreeWidgetItem *child = new QTreeWidgetItem(nowItem);
     child->setText(0, tempName);
@@ -319,14 +319,16 @@ void TreeMenu::buildNewDirSlot(bool /*flag*/)
         return;
     }
     QString path = nowItem->toolTip(0) + "/" + dirName;
-    QDir *temp = new QDir;
-    bool exist = temp->exists(path);
-    if (exist)
+
+    cout<<nowItem->toolTip(0);
+
+    if (access(path.toStdString().c_str(), F_OK) != -1)
     {
         QMessageBox::warning(this, tr("创建文件夹"), tr("文件夹已经存在！"));
         return;
     }
-    temp->mkdir(path);
+    mkdir(path.toStdString().c_str(), S_IRWXU | S_IRWXG | S_IRWXO);//所有人都可读写和运行,777权限
+
     QTreeWidgetItem *child = new QTreeWidgetItem(nowItem);
     child->setText(0, dirName);
     child->setIcon(0, QIcon(":/new/prefix1/image/appbar.folder.png"));

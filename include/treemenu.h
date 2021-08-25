@@ -19,7 +19,14 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QApplication>
+#include <QFile>
+#include <fstream>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <string>
 #include "include/mainwindow.h"
+
+using namespace std;
 
 // 创建文件时 弹出的窗体
 class NewBulidFile : public QDialog

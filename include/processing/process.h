@@ -42,6 +42,14 @@ public:
     //相对配准(间接法)
     void RelativeRegistration(const char *outputimage);
 
+    void GetNDWI();
+
+    void GetMNDWI();
+
+    void DrawImage(double **imagedata, const QString outputname);
+
+    void SmoothImage(const QString outputname);
+
 protected:
     //定义参数数组(二阶多项式)
     double para_a[6];

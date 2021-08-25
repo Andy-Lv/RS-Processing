@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui_mainwindow->setupUi(this);
-    ui_mainwindow->treeWidget->CreateTopItem("./");
+    ui_mainwindow->treeWidget->CreateTopItem("/home/andy/Code/C++/RS-Processing");
 
 }
 
