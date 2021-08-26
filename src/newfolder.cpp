@@ -49,7 +49,7 @@ NewFolder::NewFolder(QWidget *parent)
                 }
 
                 mkdir(folderPath.toStdString().c_str(), S_IRWXU | S_IRWXG | S_IRWXO);//所有人都可读写和运行,777权限
-
+                this->close();
             });
 
     //点击cancel按钮关闭对话框

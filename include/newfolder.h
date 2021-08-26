@@ -32,8 +32,6 @@ public:
 
     QString folderPath;//选择新建工程路径
 
-
-private:
     Ui::Dialog_newFolder *ui_newFolder;
 
 };

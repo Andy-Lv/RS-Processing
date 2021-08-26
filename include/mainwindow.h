@@ -6,7 +6,7 @@
 #define RS_PROCESSING_MAINWINDOW_H
 
 #pragma once
-
+#include <unistd.h>
 #include <QMainWindow>
 #include <QFileDialog>
 #include "include/treemenu.h"
