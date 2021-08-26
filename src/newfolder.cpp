@@ -7,6 +7,7 @@
 NewFolder::NewFolder(QWidget *parent)
         : QDialog(parent), ui_newFolder(new Ui::Dialog_newFolder)
 {
+    ui_newFolder->setupUi(this);
     //打开文件管理器,寻找文件创建位置
     connect(ui_newFolder->pushButton_openFolder, &QPushButton::released, this,
             [=]()
