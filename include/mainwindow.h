@@ -8,10 +8,13 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QFileDialog>
 #include "include/treemenu.h"
+#include "include/newfolder.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
     class MainWindow;
 }
 QT_END_NAMESPACE
@@ -27,6 +30,8 @@ public:
 
 private:
     Ui::MainWindow *ui_mainwindow;
+    NewFolder dialog_newfolder;//声明新建文件夹对话框
+    QString folderPath;//当前工程所在路径
 };
 
 #endif //RS_PROCESSING_MAINWINDOW_H

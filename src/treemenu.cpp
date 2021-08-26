@@ -124,7 +124,7 @@ TreeMenu::TreeMenu(QWidget *parent)
 // 创建文件树的根
 void TreeMenu::CreateTopItem(QString path)
 {
-    this->FilePath=path;//将打开项目的路径赋值到类的私有属性中
+    this->FilePath = path;//将打开项目的路径赋值到类的私有属性中
 
     QDir *rootdir = new QDir(path);
     root = new QTreeWidgetItem();
@@ -285,8 +285,7 @@ void TreeMenu::bulidNewFileSlot(bool /*flag*/)
     QString filetype = newFileWidget->fileNameTypeBox->currentText();
     if (fileName == "")
     {
-        QMessageBox::warning(this, tr("警告"),
-                             tr("文件名不能为空"));
+        QMessageBox::warning(this, tr("警告"), tr("文件名不能为空"));
         return;
     }
     QString tempName = fileName + filetype;

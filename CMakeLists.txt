@@ -53,14 +53,15 @@ qt5_wrap_cpp(MOC_SRCS
 
 qt5_wrap_ui(UI_HEADERS
         ui/login.ui
-        ui/mainwindow.ui)
+        ui/mainwindow.ui
+        ui/newfolder.ui)
 
 add_custom_target(ui ALL DEPENDS ${UI_HEADERS})
 add_custom_target(h ALL DEPENDS ${MOC_SRCS})
 
 set(HEAD_FILES
         include/processing/image.h
-        include/processing/process.h)
+        include/processing/process.h include/newfolder.h)
 
 set(SRC_FILES
         src/login.cpp
@@ -68,7 +69,7 @@ set(SRC_FILES
         src/treemenu.cpp
         src/information.cpp
         src/processing/image.cpp
-        src/processing/process.cpp)
+        src/processing/process.cpp src/newfolder.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
