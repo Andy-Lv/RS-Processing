@@ -44,6 +44,8 @@ public slots:
     bool setImage(QImage &image, double scale = 1.0);
 
     void setBackground(QBrush brush);
+
+    void showImage(QString path, QString name);
 };
 
 #endif //RS_PROCESSING_PICTUREBOX_H

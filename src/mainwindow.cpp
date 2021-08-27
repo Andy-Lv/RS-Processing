@@ -14,11 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //ui_mainwindow->widget->update();
 
-    ui_mainwindow->widget->setMode(PictureBox::AUTO_ZOOM);
-    ui_mainwindow->widget->setBackground(Qt::white);
-    QImage image("/home/andy/Code/C++/RS-Processing/test/Standard_false_color.png");
-    ui_mainwindow->widget->setImage(image,1.0);
-    ui_mainwindow->widget->update();
+
+    connect(ui_mainwindow->treeWidget, SIGNAL(showTextSignal(QString, QString, QTreeWidgetItem * )),
+            ui_mainwindow->widget,SLOT(showImage(QString,QString)));
 
 //    page_edit
     //新建文件夹

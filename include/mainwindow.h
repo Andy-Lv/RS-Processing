@@ -9,8 +9,10 @@
 #include <unistd.h>
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QString>
 #include "include/treemenu.h"
 #include "include/newfolder.h"
+#include "include/picturebox.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
