@@ -12,7 +12,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui_mainwindow->setupUi(this);
 
+    //ui_mainwindow->widget->update();
+
+    ui_mainwindow->widget->setMode(PictureBox::AUTO_ZOOM);
+    ui_mainwindow->widget->setBackground(Qt::white);
+    QImage image("/home/andy/Code/C++/RS-Processing/test/Standard_false_color.png");
+    ui_mainwindow->widget->setImage(image,1.0);
     ui_mainwindow->widget->update();
+
 //    page_edit
     //新建文件夹
     connect(ui_mainwindow->pushButton_new, &QPushButton::released, this,
