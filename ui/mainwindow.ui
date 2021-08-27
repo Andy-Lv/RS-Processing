@@ -507,14 +507,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="PictureBox" name="widget" native="true">
         <property name="acceptDrops">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTableView" name="tableView">
+       <widget class="QTableWidget" name="tableWidget">
         <property name="maximumSize">
          <size>
           <width>250</width>
@@ -534,6 +534,12 @@
    <class>TreeMenu</class>
    <extends>QTreeWidget</extends>
    <header>include/treemenu.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PictureBox</class>
+   <extends>QWidget</extends>
+   <header>include/picturebox.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

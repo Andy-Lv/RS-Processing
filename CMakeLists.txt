@@ -61,7 +61,9 @@ add_custom_target(h ALL DEPENDS ${MOC_SRCS})
 
 set(HEAD_FILES
         include/processing/image.h
-        include/processing/process.h include/newfolder.h)
+        include/processing/process.h
+        include/newfolder.h
+        include/picturebox.h)
 
 set(SRC_FILES
         src/login.cpp
@@ -69,7 +71,9 @@ set(SRC_FILES
         src/treemenu.cpp
         src/information.cpp
         src/processing/image.cpp
-        src/processing/process.cpp src/newfolder.cpp)
+        src/processing/process.cpp
+        src/newfolder.cpp
+        src/picturebox.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
