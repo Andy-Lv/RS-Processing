@@ -36,7 +36,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_file">
        <attribute name="title">
@@ -79,7 +79,7 @@
          <widget class="QPushButton" name="pushButton_save">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>45</width>
             <height>35</height>
            </size>
           </property>
@@ -98,7 +98,7 @@
          <widget class="QPushButton" name="pushButton_new">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>45</width>
             <height>35</height>
            </size>
           </property>
@@ -133,7 +133,7 @@
          <widget class="QPushButton" name="pushButton_close">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>45</width>
             <height>35</height>
            </size>
           </property>
@@ -152,7 +152,7 @@
          <widget class="QPushButton" name="pushButton_open">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>45</width>
             <height>35</height>
            </size>
           </property>
@@ -188,10 +188,10 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_9">
+         <widget class="QPushButton" name="pushButton_saveAs">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>45</width>
             <height>35</height>
            </size>
           </property>
@@ -202,7 +202,7 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>另存为</string>
           </property>
          </widget>
         </item>
@@ -332,10 +332,10 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QPushButton" name="pushButton_13">
+         <widget class="QPushButton" name="pushButton_bandComb">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>60</width>
             <height>35</height>
            </size>
           </property>
@@ -346,7 +346,7 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>波段组合</string>
           </property>
          </widget>
         </item>
@@ -367,10 +367,10 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_32">
+         <widget class="QPushButton" name="pushButton_imgStretch">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>60</width>
             <height>35</height>
            </size>
           </property>
@@ -381,7 +381,7 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>图像拉伸</string>
           </property>
          </widget>
         </item>
@@ -402,10 +402,10 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_33">
+         <widget class="QPushButton" name="pushButton_histogram">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>75</width>
             <height>35</height>
            </size>
           </property>
@@ -416,7 +416,7 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>直方图优化</string>
           </property>
          </widget>
         </item>
@@ -437,10 +437,10 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_34">
+         <widget class="QPushButton" name="pushButton_imgSmooth">
           <property name="minimumSize">
            <size>
-            <width>35</width>
+            <width>60</width>
             <height>35</height>
            </size>
           </property>
@@ -451,7 +451,147 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>图像平滑</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_34">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_imgSharpening">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>图像锐化</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_35">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_frequency">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>频域处理</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_36">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_imgSeg">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>图像分割</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_37">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_imgRestore">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>图像复原</string>
           </property>
          </widget>
         </item>

@@ -43,8 +43,11 @@
 
 #### **8月27日**
 
-参照<a href="https://blog.csdn.net/liyuanbhu/article/details/46687495">博客</a>的内容.对显示图片的主窗体进行构建,添加picturebox类,实现图像的显示一些列功能.  
+参照<a href="https://blog.csdn.net/liyuanbhu/article/details/46687495">博客</a>
+的内容.对显示图片的主窗体进行构建,添加picturebox类,实现图像的显示一些列功能.  
 成功完成在主窗体显示图像的demo,显示了一幅图像,后期会将图像各种处理方法融合
 
 #### **8月28日**
-完成点击目录树上的图片文件(png),主窗体显示该图像
+
+完成点击目录树上的图片文件(png),主窗体显示该图像  
+添加波段组合弹窗,晚上主窗口控件
