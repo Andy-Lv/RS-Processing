@@ -2,7 +2,7 @@
 // Created by andy on 2021/8/26.
 //
 #include "ui_newfolder.h"
-#include "include/newfolder.h"
+#include "function/include/newfolder.h"
 
 NewFolder::NewFolder(QWidget *parent)
         : QDialog(parent), ui_newFolder(new Ui::Dialog_newFolder)

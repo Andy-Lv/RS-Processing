@@ -49,31 +49,34 @@ qt5_wrap_cpp(MOC_SRCS
         include/mainwindow.h
         include/treemenu.h
         include/information.h
+        include/picturebox.h
         )
 
 qt5_wrap_ui(UI_HEADERS
         ui/login.ui
         ui/mainwindow.ui
-        ui/newfolder.ui)
+        ui/newfolder.ui
+        ui/bandcombination.ui)
 
 add_custom_target(ui ALL DEPENDS ${UI_HEADERS})
 add_custom_target(h ALL DEPENDS ${MOC_SRCS})
 
 set(HEAD_FILES
-        include/processing/image.h
-        include/processing/process.h
-        include/newfolder.h
-        include/picturebox.h)
+        process/image.h
+        process/process.h
+        function/include/newfolder.h
+        function/include/bandcomb.h)
 
 set(SRC_FILES
         src/login.cpp
         src/mainwindow.cpp
         src/treemenu.cpp
         src/information.cpp
-        src/processing/image.cpp
-        src/processing/process.cpp
-        src/newfolder.cpp
-        src/picturebox.cpp)
+        src/picturebox.cpp
+        process/image.cpp
+        process/process.cpp
+        function/src/newfolder.cpp
+        function/src/bandcomb.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)

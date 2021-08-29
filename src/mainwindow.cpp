@@ -5,14 +5,13 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 #include "ui_newfolder.h"
+#include "ui_bandcombination.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui_mainwindow(new Ui::MainWindow)
 {
 
     ui_mainwindow->setupUi(this);
-
-    //ui_mainwindow->widget->update();
 
 
     connect(ui_mainwindow->treeWidget, SIGNAL(showTextSignal(QString, QString, QTreeWidgetItem * )),
@@ -47,6 +46,13 @@ MainWindow::MainWindow(QWidget *parent)
                 }
             });
 
+
+    //波段组合
+    connect(ui_mainwindow->pushButton_bandComb,&QPushButton::released,this,
+            [=]()
+            {
+                dialog_bandComb.show();
+            });
 
 }
 

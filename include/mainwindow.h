@@ -11,8 +11,9 @@
 #include <QFileDialog>
 #include <QString>
 #include "include/treemenu.h"
-#include "include/newfolder.h"
 #include "include/picturebox.h"
+#include "function/include/newfolder.h"
+#include "function/include/bandcomb.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -32,8 +33,12 @@ public:
 
 private:
     Ui::MainWindow *ui_mainwindow;
+//    打开新工程
     NewFolder dialog_newfolder;//声明新建文件夹对话框
     QString folderPath;//当前工程所在路径
+
+//    波段组合
+    BandComb dialog_bandComb;
 };
 
 #endif //RS_PROCESSING_MAINWINDOW_H

@@ -2,8 +2,8 @@
 // Created by andy on 2021/8/23.
 //
 
-#include "include/processing/process.h"
-#include "include/processing/image.h"
+#include "process.h"
+#include "image.h"
 
 //波段组合
 void Process::BandCombination(const char *InputImagePath, const QString outputimage)

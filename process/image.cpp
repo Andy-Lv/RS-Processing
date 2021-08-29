@@ -2,7 +2,7 @@
 // Created by andy on 2021/8/23.
 //
 
-#include "include/processing/image.h"
+#include "image.h"
 
 void Image::ReadImage(const char *InputImagePath)
 {
