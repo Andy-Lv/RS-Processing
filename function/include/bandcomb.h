@@ -9,6 +9,9 @@
 
 #include <QDialog>
 #include <QString>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QFileDialog>
 #include <map>
 #include "process/image.h"
 
@@ -27,9 +30,9 @@ Q_OBJECT
 public:
     BandComb(QWidget *parent = Q_NULLPTR);
 
-    void Init(QString InputImagePath,QString InputImageName);
+    void Init();
 
-    void BandCombination(const char *InputImagePath, int band_R, int band_G, int band_B);
+    void BandCombination();
 
 public slots:
 //    void soltInit();
@@ -44,11 +47,10 @@ private:
 
     QString InputImagePath;
     QString OutputImagePath;
-    QString InputImageName;
     QString OutputImageName;
 
     //各个波段的像素
-    map<int, double **> banddata;
+    map<int, double **> bandData;
 
     //图像信息
     int bandNum;

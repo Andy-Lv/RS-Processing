@@ -109,8 +109,6 @@ void PictureBox::showImage(QString path, QString name)
     QImage image(path);
     setImage(image, 1.0);
     update();
-//    qDebug()<<path<<Qt::endl;
-//    qDebug()<<name<<Qt::endl;
 }
 
 PictureBox::~PictureBox()

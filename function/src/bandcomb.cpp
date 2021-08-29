@@ -10,43 +10,71 @@ BandComb::BandComb(QWidget *parent)
 {
     ui_bandComb->setupUi(this);
 
-    if (ui_bandComb->lineEdit_inputName->text()!="")
-    {
-        if (ui_bandComb->lineEdit_inputPath->text()!="")
-        {
-            InputImagePath=ui_bandComb->lineEdit_inputPath->text();
-            InputImageName=ui_bandComb->lineEdit_inputName->text();
+    connect(ui_bandComb->pushButton_openInputFolder,&QPushButton::released,this,
+            [=]()
+            {
+                this->InputImagePath=QFileDialog::getOpenFileName(this, "pushButton_openInputFolder");
+                ui_bandComb->lineEdit_inputPath->setText(this->InputImagePath);
+                Init();
+            });
 
-            Init(InputImagePath,InputImageName);
-        }
-    }
+    connect(ui_bandComb->pushButton_openOutputFolder,&QPushButton::released,this,
+            [=]()
+            {
+                ui_bandComb->lineEdit_outputPath->setText(QFileDialog::getExistingDirectory(this, "pushButton_openOutputFolder"));
+            });
+
+//    connect(ui_bandComb->lineEdit_inputPath, &QLineEdit::editingFinished, this, &BandComb::Init);
+
+    connect(ui_bandComb->pushButton_ok, &QPushButton::released, this, &BandComb::BandCombination);
+
+    connect(ui_bandComb->pushButton_ok, &QPushButton::released, this, &QDialog::close);
 }
-//void BandComb::soltInit()
-//{
-//
-//}
 
 
-void BandComb::Init(QString InputImagePath,QString InputImageName)
+void BandComb::Init()
 {
-    Image theImage;
-    QString path=InputImagePath+"/"+InputImageName;
+    this->InputImagePath = ui_bandComb->lineEdit_inputPath->text();
+    if (this->InputImagePath=="")
+    {
+        QMessageBox::warning(this, tr("警告"), tr("输入图像的地址不能为空"));
+        return;
+    }
 
-    theImage.ReadImage(path.toStdString().c_str());
+    Image theImage;
+
+    theImage.ReadImage(InputImagePath.toStdString().c_str());
+
+    this->bandNum = theImage.GetBandNum();
+    this->imgWidth = theImage.GetImgWidth();
+    this->imgHeight = theImage.GetImgHeight();
+    this->depth = theImage.GetDepth();
+    this->bandData = theImage.GetImageData();
+
+    //设置顶端显示
+    ui_bandComb->label_bandNum->setText(QString(this->bandNum));
+
+    //设置波段选择最大数量
+    ui_bandComb->spinBox_R->setMaximum(this->bandNum);
+    ui_bandComb->spinBox_G->setMaximum(this->bandNum);
+    ui_bandComb->spinBox_B->setMaximum(this->bandNum);
 }
 
 //波段组合
-void BandComb::BandCombination(const char *InputImagePath,int band_R,int band_G,int band_B)
+void BandComb::BandCombination()
 {
-    Image theImage;
+    this->OutputImageName = ui_bandComb->lineEdit_outputName->text();
+    this->OutputImagePath = ui_bandComb->lineEdit_outputPath->text();
 
-    //读取图像所有波段,每个波段的像素数据储存在map容器banddata中
-    //TODO 图片路径需要指定
-    theImage.ReadImage(InputImagePath);
+    if(this->OutputImageName==""||this->OutputImagePath=="")
+    {
+        QMessageBox::warning(this, tr("警告"), tr("输入图像的名称或地址不能为空"));
+        return;
+    }
 
-    int imgWidth = theImage.GetImgWidth();
-    int imgHeight = theImage.GetImgHeight();
-    map<int, double **> bandData = theImage.GetImageData();
+    this->band_R=ui_bandComb->spinBox_R->value();
+    this->band_G=ui_bandComb->spinBox_G->value();
+    this->band_B=ui_bandComb->spinBox_B->value();
 
     //创建绘图设备
     QImage image(imgWidth, imgHeight, QImage::Format_ARGB32);
@@ -57,16 +85,15 @@ void BandComb::BandCombination(const char *InputImagePath,int band_R,int band_G,
         for (int j = 0; j < imgWidth; j++)
         {
             //设置像素
-            //TODO 此处需要设置波段组合的顺序
             image.setPixel(QPoint(j, i), qRgb(bandData.find(band_R)->second[i][j],
                                               bandData.find(band_G)->second[i][j],
                                               bandData.find(band_B)->second[i][j]));
         }
     }
 
-//    //保存图片
-//    image.save("../Output_Image/" + outputimage + ".png");
-//
-//    cout << "成功输出波段组合后图像 " << outputimage.toStdString() << ".png" << endl;
+    //保存图片
+    image.save(this->OutputImagePath + "/" + OutputImageName + ".png");
+
+    this->close();
 }
 

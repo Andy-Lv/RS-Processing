@@ -62,14 +62,10 @@ void Image::ReadImage(const char *InputImagePath)
 
         //释放缓冲区
         CPLFree(pafScanline);
-        delete(poBand);
-
     }
 
     //关闭图像
     GDALClose(ImageData);
-
-    cout << "成功读取图片" << bandNum << "个波段" << endl;
 }
 
 int Image::GetBandNum()
