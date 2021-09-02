@@ -29,15 +29,15 @@ void Image::ReadImage(const char *InputImagePath)
     this->bandNum = ImageData->GetRasterCount();    //波段数
     this->depth = GDALGetDataTypeSize(ImageData->GetRasterBand(1)->GetRasterDataType()) / 8;    //图像深度
 
-    imagedata = new double *[imgHeight];
-    for (int i = 0; i < imgHeight; i++)
-    {
-        imagedata[i] = new double[imgWidth];
-    }
-
     //读取每个波段的像素值存入到map中,波段是从1开始
-    for (int nband = 1; nband <= bandNum; ++nband)
+    for (int nband = 1; nband <= bandNum; nband++)
     {
+        imagedata = new double *[imgHeight];
+        for (int i = 0; i < imgHeight; i++)
+        {
+            imagedata[i] = new double[imgWidth];
+        }
+
         //读取波段
         GDALRasterBand *poBand;
         poBand = ImageData->GetRasterBand(nband);

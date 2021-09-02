@@ -52,7 +52,7 @@ void BandComb::Init()
     this->bandData = theImage.GetImageData();
 
     //设置顶端显示
-    ui_bandComb->label_bandNum->setText(QString(this->bandNum));
+    ui_bandComb->label_bandNum->setText(QString::number(this->bandNum));
 
     //设置波段选择最大数量
     ui_bandComb->spinBox_R->setMaximum(this->bandNum);

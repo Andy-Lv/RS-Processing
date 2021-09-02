@@ -11,6 +11,8 @@
 #include "gdal_priv.h"
 #include "gdal.h"
 
+#include <QDebug>
+
 using namespace std;
 
 class Image

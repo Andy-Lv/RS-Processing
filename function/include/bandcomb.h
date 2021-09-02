@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDebug>
 #include <map>
 #include "process/image.h"
 
