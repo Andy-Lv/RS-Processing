@@ -24,11 +24,9 @@ BandComb::BandComb(QWidget *parent)
                 ui_bandComb->lineEdit_outputPath->setText(QFileDialog::getExistingDirectory(this, "pushButton_openOutputFolder"));
             });
 
-//    connect(ui_bandComb->lineEdit_inputPath, &QLineEdit::editingFinished, this, &BandComb::Init);
-
     connect(ui_bandComb->pushButton_ok, &QPushButton::released, this, &BandComb::BandCombination);
 
-    connect(ui_bandComb->pushButton_ok, &QPushButton::released, this, &QDialog::close);
+    connect(ui_bandComb->pushButton_cancel, &QPushButton::released, this, &QDialog::close);
 }
 
 
