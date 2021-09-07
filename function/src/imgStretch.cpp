@@ -10,34 +10,59 @@ ImgStretch::ImgStretch(QWidget *parent)
 {
     ui_imgStretch->setupUi(this);
 
-    connect(ui_imgStretch->pushButton_openInputFolder,&QPushButton::released,this,
+    connect(ui_imgStretch->pushButton_openInputFolder, &QPushButton::released, this,
             [=]()
             {
-                this->InputImagePath=QFileDialog::getOpenFileName(this, "pushButton_openInputFolder");
+                this->InputImagePath = QFileDialog::getOpenFileName(this, "pushButton_openInputFolder");
                 ui_imgStretch->lineEdit_inputPath->setText(this->InputImagePath);
-                //Init();
+                Init();
             });
 
-    connect(ui_imgStretch->pushButton_openOutputFolder,&QPushButton::released,this,
+    connect(ui_imgStretch->pushButton_openOutputFolder, &QPushButton::released, this,
             [=]()
             {
-                ui_imgStretch->lineEdit_outputPath->setText(QFileDialog::getExistingDirectory(this, "pushButton_openOutputFolder"));
+                ui_imgStretch->lineEdit_outputPath->setText(
+                        QFileDialog::getExistingDirectory(this, "pushButton_openOutputFolder"));
             });
 
-    connect(ui_imgStretch->pushButton_ok, &QPushButton::released, this, &ImgStretch::ImageStretching);
+    connect(ui_imgStretch->pushButton_ok, &QPushButton::released, this,
+            [=]()
+            {
+                if (this->InputImagePath == "")
+                {
+                    QMessageBox::warning(this, tr("警告"), tr("输入图像的地址不能为空"));
+                    return;
+                }
 
-    connect(ui_imgStretch->pushButton_cancel,&QPushButton::released,this,&QDialog::close);
+                if (this->OutputImagePath == "")
+                {
+                    QMessageBox::warning(this, tr("警告"), tr("输出图像的地址不能为空"));
+                    return;
+                }
+
+                if (this->OutputImageName == "")
+                {
+                    QMessageBox::warning(this, tr("警告"), tr("输出图像的地址不能为空"));
+                    return;
+                }
+
+                if (ui_imgStretch->radioButton_png->isChecked())
+                {
+                    ImageStretching_png();
+                }
+                if (ui_imgStretch->radioButton_tif->isChecked())
+                {
+                    ImageStretching_tif();
+                }
+            });
+
+    connect(ui_imgStretch->pushButton_cancel, &QPushButton::released, this, &QDialog::close);
 
 }
 
 void ImgStretch::Init()
 {
     this->InputImagePath = ui_imgStretch->lineEdit_inputPath->text();
-    if (this->InputImagePath=="")
-    {
-        QMessageBox::warning(this, tr("警告"), tr("输入图像的地址不能为空"));
-        return;
-    }
 
     Image theImage;
 
@@ -48,6 +73,8 @@ void ImgStretch::Init()
     this->imgHeight = theImage.GetImgHeight();
     this->depth = theImage.GetDepth();
     this->bandData = theImage.GetImageData();
+
+    this->bandNum=1;//默认为第一波段
 
     //设置顶端显示
     ui_imgStretch->label_bandNum->setText(QString::number(this->bandNum));
@@ -61,8 +88,14 @@ void ImgStretch::Init()
 //    ui_bandComb->spinBox_B->setMaximum(this->bandNum);
 }
 
-void ImgStretch::ImageStretching()
+void ImgStretch::ImageStretching_png()
 {
+
+}
+
+void ImgStretch::ImageStretching_tif()
+{
+    //TODO 确定输入图像是多少位的，是否需要拉伸到不同的位，但感觉没什么意义
     GDALAllRegister();
 
     //原始图像
@@ -71,7 +104,7 @@ void ImgStretch::ImageStretching()
     //图像驱动
     GDALDriver *poDriver = GetGDALDriverManager()->GetDriverByName("GTiff");
 
-    QString path=OutputImagePath+"/"+OutputImageName+"tif";
+    QString path = OutputImagePath + "/" + OutputImageName + "tif";
     //创建8bit的数据
     GDALDataset *OutputImage = poDriver->Create(path.toStdString().c_str(), imgWidth, imgHeight, bandNum,
                                                 GDT_Byte,

@@ -33,7 +33,8 @@ public:
 
     void Init();
 
-    void ImageStretching();
+    void ImageStretching_tif();
+    void ImageStretching_png();
 
 private:
     Ui::Dialog_imgStretch *ui_imgStretch;

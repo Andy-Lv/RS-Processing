@@ -66,7 +66,8 @@ set(HEAD_FILES
         process/image.h
         process/process.h
         function/include/newfolder.h
-        function/include/bandcomb.h function/include/imgStretch.h)
+        function/include/bandcomb.h
+        function/include/imgStretch.h)
 
 set(SRC_FILES
         src/login.cpp
@@ -77,7 +78,8 @@ set(SRC_FILES
         process/image.cpp
         process/process.cpp
         function/src/newfolder.cpp
-        function/src/bandcomb.cpp function/src/imgStretch.cpp)
+        function/src/bandcomb.cpp
+        function/src/imgStretch.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
