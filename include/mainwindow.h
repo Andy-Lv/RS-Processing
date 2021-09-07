@@ -14,6 +14,7 @@
 #include "include/picturebox.h"
 #include "function/include/newfolder.h"
 #include "function/include/bandcomb.h"
+#include "function/include/imgStretch.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -39,6 +40,8 @@ private:
 
 //    波段组合
     BandComb dialog_bandComb;
+
+    ImgStretch dialog_imgStretch;
 };
 
 #endif //RS_PROCESSING_MAINWINDOW_H

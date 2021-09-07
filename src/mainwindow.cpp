@@ -54,6 +54,12 @@ MainWindow::MainWindow(QWidget *parent)
                 dialog_bandComb.show();
             });
 
+    connect(ui_mainwindow->pushButton_imgStretch,&QPushButton::released,this,
+            [=]()
+            {
+                dialog_imgStretch.show();
+            });
+
 }
 
 

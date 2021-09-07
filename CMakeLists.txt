@@ -56,7 +56,8 @@ qt5_wrap_ui(UI_HEADERS
         ui/login.ui
         ui/mainwindow.ui
         ui/newfolder.ui
-        ui/bandcombination.ui)
+        ui/bandcombination.ui
+        ui/imgStrech.ui)
 
 add_custom_target(ui ALL DEPENDS ${UI_HEADERS})
 add_custom_target(h ALL DEPENDS ${MOC_SRCS})
@@ -65,7 +66,7 @@ set(HEAD_FILES
         process/image.h
         process/process.h
         function/include/newfolder.h
-        function/include/bandcomb.h)
+        function/include/bandcomb.h function/include/imgStretch.h)
 
 set(SRC_FILES
         src/login.cpp
@@ -76,7 +77,7 @@ set(SRC_FILES
         process/image.cpp
         process/process.cpp
         function/src/newfolder.cpp
-        function/src/bandcomb.cpp)
+        function/src/bandcomb.cpp function/src/imgStretch.cpp)
 
 # ui
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
