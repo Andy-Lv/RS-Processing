@@ -68,7 +68,7 @@ void ImgStretch::Init()
 
     theImage.ReadImage(InputImagePath.toStdString().c_str());
 
-    this->bandNum = theImage.GetBandNum();
+    this->bandNum_all = theImage.GetBandNum();
     this->imgWidth = theImage.GetImgWidth();
     this->imgHeight = theImage.GetImgHeight();
     this->depth = theImage.GetDepth();
@@ -205,4 +205,9 @@ void ImgStretch::ImageStretching_tif()
     //关闭原始图像和结果图像
     GDALClose((GDALDatasetH) OutputImage);
     GDALClose((GDALDatasetH) InputImage);
+}
+
+Histogram::Histogram(QWidget *parent)
+{
+
 }

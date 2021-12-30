@@ -34,6 +34,7 @@ public:
     void Init();
 
     void ImageStretching_tif();
+
     void ImageStretching_png();
 
 private:
@@ -47,13 +48,23 @@ private:
     map<int, double **> bandData;
 
     //图像信息
-    int bandNum_all;
+    int bandNum_all;//当前图像所有波段
     int bandNum = 1;//当前为第几波段
-    int imgWidth;
-    int imgHeight;
-    int depth;
+    int imgWidth;//图像宽度
+    int imgHeight;//图像高度
+    int depth;//图像深度
 
 
+};
+
+class Histogram : QWidget
+{
+Q_OBJECT
+
+public:
+    Histogram(QWidget *parent = Q_NULLPTR);
+
+    void ShowHistogram();
 };
 
 #endif //RS_PROCESSING_IMGSTRETCH_H
