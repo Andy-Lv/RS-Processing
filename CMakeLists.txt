@@ -108,4 +108,5 @@ target_link_libraries(${PROJECT_NAME}
         Qt5::Gui
         Qt5::Network
         ${GDAL_LIBRARY}
-        Eigen3::Eigen)
+        Eigen3::Eigen
+        qcustomplot)

@@ -272,7 +272,7 @@
        <widget class="QWidget" name="widget_4" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QWidget" name="widget_histogram" native="true"/>
+          <widget class="Histogram" name="widget_histogram" native="true"/>
          </item>
          <item>
           <widget class="QSlider" name="horizontalSlider">
@@ -381,6 +381,12 @@
       </item>
       <item row="2" column="2">
        <widget class="QSpinBox" name="spinBox_laterMaxGrayscale">
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
         <property name="value">
          <number>0</number>
         </property>
@@ -407,7 +413,14 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QSpinBox" name="spinBox_preMaxGrayscale"/>
+       <widget class="QSpinBox" name="spinBox_preMaxGrayscale">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+       </widget>
       </item>
       <item row="1" column="6">
        <widget class="QLabel" name="label_8">
@@ -474,7 +487,11 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="spinBox_laterMinGrayscale"/>
+       <widget class="QSpinBox" name="spinBox_laterMinGrayscale">
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+       </widget>
       </item>
       <item row="1" column="7">
        <widget class="QLineEdit" name="lineEdit_outputName">
@@ -493,7 +510,14 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBox_preMinGrayscale"/>
+       <widget class="QSpinBox" name="spinBox_preMinGrayscale">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+       </widget>
       </item>
       <item row="0" column="7">
        <widget class="QLabel" name="label_7">
@@ -692,6 +716,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Histogram</class>
+   <extends>QWidget</extends>
+   <header>function/include/imgStretch.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

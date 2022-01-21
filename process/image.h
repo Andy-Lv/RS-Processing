@@ -33,6 +33,14 @@ public:
     //输出图像波段像素信息
     map<int,double **> GetImageData();
 
+    map<int, double> GetMinimumValue();
+    map<int, double> GetMaximumValue();
+    map<int, double> GetMeanValue();
+    map<int, double> GetSigmaValue();
+
+    //输出图像直方图信息
+    map<int,unsigned long long *>GetHistogramArray();
+
 
 protected:
     //图像信息
@@ -41,6 +49,11 @@ protected:
     int imgHeight;
     int depth;
 
+    //获取各个波段的
+    map<int, double> minimumValue;//最小值
+    map<int, double> maximumValue;//最大值
+    map<int, double> meanValue;//平均值
+    map<int, double> sigmaValue;//标准差
 
     //创建暂时储存像素值的二维数组空指针
     double **imagedata;
@@ -51,6 +64,8 @@ protected:
     //各个波段的像素
     map<int, double **> banddata;
 
+    //各波段的直方图
+    map<int,unsigned long long *>histogramArray;
 };
 
 #endif //RS_PROCESSING_IMAGE_H

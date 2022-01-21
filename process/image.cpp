@@ -23,7 +23,6 @@ void Image::ReadImage(const char *InputImagePath)
     }
 
     //读取图像信息
-
     this->imgWidth = ImageData->GetRasterXSize();//图像宽度
     this->imgHeight = ImageData->GetRasterYSize();//图像高度
     this->bandNum = ImageData->GetRasterCount();    //波段数
@@ -57,9 +56,38 @@ void Image::ReadImage(const char *InputImagePath)
             }
         }
 
+        double minimum, maximum, mean, sigma;
+
+
+        //获取该波段的最大值 最小值 平均值 和标准差
+        poBand->GetStatistics(true, true, &minimum, &maximum, &mean, &sigma);
+
+        //定义直方图段数和数组
+        int histogramBuckets = maximum;
+        unsigned long long *histogram = new unsigned long long[histogramBuckets];
+
+        //获取该波段灰度直方图
+        poBand->GetHistogram(
+                minimum - std::numeric_limits<double>::epsilon(),
+                maximum + std::numeric_limits<double>::epsilon(),
+                histogramBuckets,
+                histogram,
+                false,
+                false,
+                GDALDummyProgress,
+                nullptr);
+
         //将每个波段像素插入到map中,从1开始
         this->banddata.insert(pair<int, double **>(nband, imagedata));
 
+        //将各个波段的最大值插入map中
+        this->minimumValue.insert(pair<int, double>(nband, minimum));
+        this->maximumValue.insert(pair<int, double>(nband, maximum));
+        this->meanValue.insert(pair<int, double>(nband, mean));
+        this->sigmaValue.insert(pair<int, double>(nband, sigma));
+
+        //将各个波段的直方图插入map
+        this->histogramArray.insert(pair<int, unsigned long long *>(nband, histogram));
         //释放缓冲区
         CPLFree(pafScanline);
     }
@@ -88,7 +116,29 @@ int Image::GetDepth()
     return this->depth;
 }
 
-map<int,double **> Image::GetImageData()
+map<int, double **> Image::GetImageData()
 {
     return this->banddata;
+}
+
+map<int, double> Image::GetMinimumValue()
+{
+    return this->minimumValue;
+}
+map<int, double> Image::GetMaximumValue()
+{
+    return this->maximumValue;
+}
+map<int, double> Image::GetMeanValue()
+{
+    return this->meanValue;
+}
+map<int, double> Image::GetSigmaValue()
+{
+    return this->sigmaValue;
+}
+
+map<int, unsigned long long *> Image::GetHistogramArray()
+{
+    return this->histogramArray;
 }

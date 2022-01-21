@@ -15,6 +15,7 @@
 #include <QDebug>
 #include <map>
 #include "process/image.h"
+#include "qcustomplot.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -44,27 +45,22 @@ private:
     QString OutputImagePath;
     QString OutputImageName;
 
-    //各个波段的像素
-    map<int, double **> bandData;
-
     //图像信息
-    int bandNum_all;//当前图像所有波段
-    int bandNum = 1;//当前为第几波段
-    int imgWidth;//图像宽度
-    int imgHeight;//图像高度
-    int depth;//图像深度
+    Image theImage;
+
+    int bandNum = 1;//默认为第一波段
 
 
 };
 
-class Histogram : QWidget
+class Histogram : public QWidget
 {
 Q_OBJECT
 
 public:
-    Histogram(QWidget *parent = Q_NULLPTR);
-
-    void ShowHistogram();
+    explicit Histogram(QWidget *parent = 0);
+    ~Histogram();
+    void DrawHistogram(unsigned long long * histogramArray, double maximumValue);
 };
 
 #endif //RS_PROCESSING_IMGSTRETCH_H

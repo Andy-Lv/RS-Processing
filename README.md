@@ -86,3 +86,8 @@ TODO：
 
 #### **12月29日**
 修复图像拉伸窗口波段总数显示为整个像素点数的bug
+
+#### **1月17日**
+决定使用QCustomPLot库来进行直方图的绘制，Manjaro系统中使用该库，yay -D qcustomplot  
+再在cmakelists中加入target_link_libraries qcustomplot即可使用
+实现图片直方图的显示，下一步为添加入本项目
