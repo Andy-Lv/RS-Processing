@@ -70,9 +70,9 @@ void ImgStretch::Init()
     ui_imgStretch->label_bandNum->setText(QString::number(bandNum));
     ui_imgStretch->label_bandNum_all->setText(QString::number(theImage.GetBandNum()));
 
-    //TODO 显示直方图
-    Histogram histogram;
-    histogram.DrawHistogram(theImage.GetHistogramArray()[bandNum],theImage.GetMaximumValue()[bandNum]);
+    //显示直方图
+    this->ui_imgStretch->widget_histogram->DrawHistogram(theImage.GetHistogramArray()[bandNum],theImage.GetMaximumValue()[bandNum]);
+
     //设置波段选择最大数量
     ui_imgStretch->spinBox_preMinGrayscale->setValue(theImage.GetMinimumValue()[bandNum]);
     ui_imgStretch->spinBox_preMaxGrayscale->setValue(theImage.GetMaximumValue()[bandNum]);

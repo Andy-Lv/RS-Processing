@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui_mainwindow->setupUi(this);
 
-
+//双击显示图片
     connect(ui_mainwindow->treeWidget, SIGNAL(showTextSignal(QString, QString, QTreeWidgetItem * )),
             ui_mainwindow->widget,SLOT(showImage(QString,QString)));
 

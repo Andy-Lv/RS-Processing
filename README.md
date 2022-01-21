@@ -91,3 +91,6 @@ TODO：
 决定使用QCustomPLot库来进行直方图的绘制，Manjaro系统中使用该库，yay -D qcustomplot  
 再在cmakelists中加入target_link_libraries qcustomplot即可使用
 实现图片直方图的显示，下一步为添加入本项目
+
+#### **1月21日**
+图片直方图显示完成
