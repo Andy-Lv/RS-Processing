@@ -15,7 +15,20 @@ ImgStretch::ImgStretch(QWidget *parent)
             {
                 this->InputImagePath = QFileDialog::getOpenFileName(this, "pushButton_openInputFolder");
                 ui_imgStretch->lineEdit_inputPath->setText(this->InputImagePath);
+
                 Init();
+
+//                //设置范围值
+//                this->minimum = theImage.GetMinimumValue()[bandNum] + 1;
+//                this->maximum = theImage.GetMaximumValue()[bandNum] - 1;
+
+                //设置被拉伸像素值选择范围  初始值
+                ui_imgStretch->spinBox_preMinGrayscale->setMinimum(theImage.GetMinimumValue()[bandNum]);
+                ui_imgStretch->spinBox_preMaxGrayscale->setMaximum(theImage.GetMaximumValue()[bandNum]);
+
+                ui_imgStretch->spinBox_preMinGrayscale->setValue(theImage.GetMinimumValue()[bandNum]);
+                ui_imgStretch->spinBox_preMaxGrayscale->setValue(theImage.GetMaximumValue()[bandNum]);
+
             });
 
     connect(ui_imgStretch->pushButton_openOutputFolder, &QPushButton::released, this,
@@ -58,10 +71,62 @@ ImgStretch::ImgStretch(QWidget *parent)
 
     connect(ui_imgStretch->pushButton_cancel, &QPushButton::released, this, &QDialog::close);
 
+    //上一个波段按钮
+    connect(ui_imgStretch->pushButton_next, &QPushButton::released, this,
+            [=]()
+            {
+                this->bandNum++;
+                this->Init();
+            });
+    //下一个波段按钮
+    connect(ui_imgStretch->pushButton_previous, &QPushButton::released, this,
+            [=]()
+            {
+                this->bandNum--;
+                this->Init();
+            });
+
+    connect(ui_imgStretch->spinBox_preMinGrayscale, &QSpinBox::textChanged, this,
+            [=]()
+            {
+                //最大灰度的最小值与最小灰度的最大值的关系
+                ui_imgStretch->spinBox_preMaxGrayscale->setMinimum(ui_imgStretch->spinBox_preMinGrayscale->value());
+                ui_imgStretch->spinBox_preMinGrayscale->setMaximum(ui_imgStretch->spinBox_preMaxGrayscale->value());
+                //设置范围值
+                this->minimum = ui_imgStretch->spinBox_preMinGrayscale->value();
+                this->maximum = ui_imgStretch->spinBox_preMaxGrayscale->value();
+                this->Init();
+            });
+
+    connect(ui_imgStretch->spinBox_preMaxGrayscale, &QSpinBox::textChanged, this,
+            [=]()
+            {
+                //最大灰度的最小值与最小灰度的最大值的关系
+                ui_imgStretch->spinBox_preMaxGrayscale->setMinimum(ui_imgStretch->spinBox_preMinGrayscale->value());
+                ui_imgStretch->spinBox_preMinGrayscale->setMaximum(ui_imgStretch->spinBox_preMaxGrayscale->value());
+                //设置范围值
+                this->minimum = ui_imgStretch->spinBox_preMinGrayscale->value();
+                this->maximum = ui_imgStretch->spinBox_preMaxGrayscale->value();
+                this->Init();
+            });
 }
 
 void ImgStretch::Init()
 {
+    this->bandNum_all = theImage.GetBandNum();
+    //设置波段切换按钮
+    ui_imgStretch->pushButton_previous->setEnabled(true);
+    ui_imgStretch->pushButton_next->setEnabled(true);
+    if (bandNum == 1)
+    {
+        ui_imgStretch->pushButton_previous->setDisabled(true);
+    }
+    if (bandNum == this->bandNum_all)
+    {
+        ui_imgStretch->pushButton_next->setDisabled(true);
+    }
+
+
     this->InputImagePath = ui_imgStretch->lineEdit_inputPath->text();
 
     theImage.ReadImage(InputImagePath.toStdString().c_str());
@@ -71,12 +136,9 @@ void ImgStretch::Init()
     ui_imgStretch->label_bandNum_all->setText(QString::number(theImage.GetBandNum()));
 
     //显示直方图
-    this->ui_imgStretch->widget_histogram->DrawHistogram(theImage.GetHistogramArray()[bandNum],theImage.GetMaximumValue()[bandNum]);
-
-    //设置波段选择最大数量
-    ui_imgStretch->spinBox_preMinGrayscale->setValue(theImage.GetMinimumValue()[bandNum]);
-    ui_imgStretch->spinBox_preMaxGrayscale->setValue(theImage.GetMaximumValue()[bandNum]);
-
+    this->ui_imgStretch->widget_histogram->DrawHistogram(theImage.GetHistogramArray()[bandNum],
+                                                         theImage.GetMaximumValue()[bandNum],
+                                                         minimum, maximum);
 }
 
 void ImgStretch::ImageStretching_png()
@@ -211,7 +273,7 @@ Histogram::~Histogram()
 
 }
 
-void Histogram::DrawHistogram(unsigned long long *histogramArray, double maximumValue)
+void Histogram::DrawHistogram(unsigned long long *histogramArray, double maximumValue, int min, int max)
 {
     QCustomPlot *plot = new QCustomPlot(this);
     plot->resize(this->width(), this->height());
@@ -219,6 +281,9 @@ void Histogram::DrawHistogram(unsigned long long *histogramArray, double maximum
     double yrange = 0;
     QVector<double> datax;//储存横坐标
     QVector<double> datay;//储存纵坐标
+
+    QVector<double> rangex;//储存范围横坐标
+    QVector<double> rangey;//储存范围纵坐标
     plot->clearGraphs();
     //datay.resize(10);
     for (int i = 0; i < maximumValue; i++)
@@ -240,6 +305,16 @@ void Histogram::DrawHistogram(unsigned long long *histogramArray, double maximum
     bars->setData(datax, datay);
     bars->setPen(QColor(0, 0, 0));
     bars->setWidth(0.05);
+    plot->setVisible(true);
+    plot->replot();
+
+    //绘制范围
+    rangex << min << max;
+    rangey << (int) yrange << (int) yrange;
+    QCPBars *rangebars = new QCPBars(plot->xAxis, plot->yAxis);
+    rangebars->setData(rangex, rangey);
+    rangebars->setPen(QColor(255, 0, 0));
+    rangebars->setWidth(0.1);
     plot->setVisible(true);
     plot->replot();
 }

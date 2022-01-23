@@ -50,7 +50,9 @@ private:
 
     int bandNum = 1;//默认为第一波段
 
+    int bandNum_all;
 
+    int minimum,maximum;//拉伸范围
 };
 
 class Histogram : public QWidget
@@ -59,8 +61,10 @@ Q_OBJECT
 
 public:
     explicit Histogram(QWidget *parent = 0);
+
     ~Histogram();
-    void DrawHistogram(unsigned long long * histogramArray, double maximumValue);
+
+    void DrawHistogram(unsigned long long *histogramArray, double maximumValue,int min, int max);
 };
 
 #endif //RS_PROCESSING_IMGSTRETCH_H
